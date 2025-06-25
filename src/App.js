@@ -1,5 +1,6 @@
 import "./App.css";
 import EnrolmentForm from "./EnrolmentForm";
+import EnrollList from "./EnrollList";
 import { useState } from "react";
 
 const App = () => {
@@ -55,6 +56,7 @@ const setUpdatedSeats = (updatedSeats) => {
 
         currentSeats={program === "UG" ? ugSeats : pgSeats}
       />
+      <EnrollList />
     </div>
   );
 }
