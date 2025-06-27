@@ -1,6 +1,7 @@
 import "./EnrollList.css";
 import { DataGrid } from '@mui/x-data-grid';
-import Paper from '@mui/material/Paper';
+import { useEffect} from "react";
+
 
 
 // Columns for the detail list.
@@ -25,53 +26,23 @@ const columns = [
     headerName: 'Email',
     width: 150,
   },
-//   {
-//     key: "fname",
-//     name: "First Name",
-//     fieldName: "fname",
-//     minWidth: 90,
-//     maxWidth: 200,
-//     isResizable: true,
-//   },
-//   {
-//     key: "lname",
-//     name: "Last Name",
-//     fieldName: "lname",
-//     minWidth: 90,
-//     maxWidth: 200,
-//     isResizable: true,
-//   },
-//   {
-//     key: "program",
-//     name: "Program",
-//     fieldName: "program",
-//     minWidth: 60,
-//     maxWidth: 200,
-//     isResizable: true,
-//   },
-//   {
-//     key: "email",
-//     name: "Email",
-//     fieldName: "email",
-//     minWidth: 130,
-//     maxWidth: 200,
-//     isResizable: true,
-//   },
 ];
 
 // Test items
-let items = [];
-for (let i = 1; i < 5; i++) {
-  items.push({
-    id: i,
-    firstName: "FirstName " + i,
-    lastName: "LastName " + i,
-    program: "UG",
-    email: "Email " + i,
-  });
-}
 
-const EnrollList = () => {
+let items = []
+const EnrollList = (props) => {
+// const [items, setItems] = useState([])
+    useEffect(() => {
+        // const curItemKey = Object.keys(props.studentData).length === 0;
+        const curItemKey = props.studentData.id
+        if (curItemKey){
+            items = [...items, props.studentData];
+            // setItems(items => [...items, props.studentData]);
+            console.log("i", items)
+            props.setStudentData({});
+        }
+     } , [props]);
   return (
     <>
         <DataGrid className="enrollList" columns={columns} rows={items}></DataGrid>

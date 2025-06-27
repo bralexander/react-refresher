@@ -6,10 +6,19 @@ const EnrolmentForm =(props) => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [welcomeMessage, setWelcomeMessage] = useState("");
+  const [id, setId] = useState(1)
   const handleClick = (event) => {
     handleInputReset("","","");
     setWelcomeMessage(`${firstName} ${lastName} enrolled. Email sent to - ${email}`);
     props.setUpdatedSeats(props.currentSeats - 1);
+    props.setStudentData({
+      id: id,
+      firstName: firstName,
+      lastName: lastName,
+      program: props.chosenProgram,
+      email: email,
+    });
+    setId(id + 1)
     event.preventDefault();
   };
 //change of input value set method
@@ -29,7 +38,7 @@ const handleInputReset = (fname, lname, email) => {
             <ul className="ulEnrol">
 
            <li>
-              <label for="firstname"></label>
+              <label htmlFor="firstname"></label>
               <input
                 type="text"
                 className="inputFields"
@@ -41,7 +50,7 @@ const handleInputReset = (fname, lname, email) => {
               />
             </li>
             <li>
-              <label for="lastname"></label>
+              <label htmlFor="lastname"></label>
               <input
                 type="test"
                 className="inputFields"
@@ -53,7 +62,7 @@ const handleInputReset = (fname, lname, email) => {
               />
             </li>
             <li>
-              <label for="email"></label>
+              <label htmlFor="email"></label>
               <input
                 type="email"
                 className="inputFields"
